@@ -1,0 +1,326 @@
+<!--<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Wearable</title>
+
+		<canvas height="17vh" width="40vw" class="line-chart"></canvas>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+
+		<script id="grafico">
+			alert("<<Projeto de Instrumentação Eletrônica>>");
+
+			var ctx = document.getElementsByClassName("line-chart");
+
+			// Type, Data e Options
+			var chartGraph = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+					datasets: [
+						{
+							label: "Gráfico I",
+							data: [10, 12, 31, 4, 8, 61, 17, 2, 19, 35, 25, 15],
+							borderWidth: 3,
+							easing: 'linear',
+							borderColor: 'rgba(77, 166, 253, 0.85)',
+							backgroundColor: 'transparent',
+						},
+						{
+							label: "Gráfico II",
+							data: [15, 25, 35, 19, 2, 17, 61, 8, 4, 31, 12, 10],
+							borderWidth: 3,
+							borderColor: 'rgba(255, 50, 10, 0.85)',
+							backgroundColor: 'transparent',
+						}
+					]
+				}
+			});
+		</script>
+
+	</head>
+	<body>
+		<div id="grafico" style="width: 900px; height: 500px"></div>
+	</body>
+</html>-->
+
+<!--<html>
+  <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Wearable</title>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+			// DOCUMENTAÇÃO >> https://developers.google.com/chart/interactive/docs/gallery/linechart
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses', 'Teste'],
+          ['2004',  1000,      400, 100],
+          ['2005',  1170,      460, 200],
+          ['2006',  660,       1120, 300],
+          ['2007',  1030,      540, 400]
+        ]);
+
+        var options = {
+          title: 'Company Performance',
+          curveType: 'none',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="curve_chart" style="width: 5dp; height: 500px"></div>
+  </body>
+</html>-->
+
+<!DOCTYPE html>
+<html>
+		<head>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+			<!--Import Google Icon Font-->
+		  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		  <!--Import materialize.css-->
+		  <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		  <link type="text/css" rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css"  media="screen,projection"/>
+		  <!--Let browser know website is optimized for mobile-->
+		  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+		  <!-- Compiled and minified JavaScript -->
+		  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+			<title>Health Notice</title>
+
+			<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	    <script type="text/javascript">
+	      google.charts.load('current', {'packages':['corechart']});
+	      google.charts.setOnLoadCallback(drawChart);
+
+				// DOCUMENTAÇÃO >> https://developers.google.com/chart/interactive/docs/gallery/linechart
+
+	      function drawChart() {
+	        var data = google.visualization.arrayToDataTable([
+	          ['Year', 'Sales', 'Expenses'],
+	          ['2004',  1000,      400],
+	          ['2005',  1170,      460],
+	          ['2006',  660,       1120],
+	          ['2007',  1030,      540],
+						['2008',  980,      620],
+						['2009',  1002,     690],
+						['2010',  1100,      470],
+						['2011',  760,      840],
+						['2012',  1030,      620]
+	        ]);
+
+	        var options = {
+	          title: 'Company Performance',
+	          curveType: 'none',
+	          legend: { position: 'bottom' },
+						backgroundColor: '#EEE',//'#C9DAE6',
+						colors: ['#DE0015', '#FFAE07'],
+						lineWidth: 4
+	        };
+
+	        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+	        chart.draw(data, options);
+	      }
+	    </script>
+
+			<script type="text/javascript">
+	       google.charts.load('current', {'packages':['gauge']});
+	       google.charts.setOnLoadCallback(drawChart);
+
+	       function drawChart() {
+
+	         var data = google.visualization.arrayToDataTable([
+	           ['Label', 'Value'],
+	           ['ºC', 35.5],
+	           //['CPU', 55],
+	           //['Network', 68]
+	         ]);
+
+	         var options = {
+	           width: 800, height: 240,
+	           redFrom: 37, redTo: 100,
+	           greenFrom:35, greenTo: 37,
+	           yellowFrom:0, yellowTo:35,
+	           minorTicks: 5
+	         };
+
+	         var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+	         chart.draw(data, options);
+
+	         setInterval(function() {
+	           data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+	           chart.draw(data, options);
+	         }, 13000);
+	         /*setInterval(function() {
+	           data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+	           chart.draw(data, options);
+	         }, 5000);
+	         setInterval(function() {
+	           data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
+	           chart.draw(data, options);
+	         }, 26000);*/
+	       }
+	     </script>
+
+			 <script src="//cdn.transifex.com/live.js"></script>
+		</head>
+
+
+		<body>
+
+		<!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="center brand-logo"><i class="material-icons">contacts</i>Health Notice</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="badges.html">Sobre</a></li>
+					<li><a href="login.html">Login</a></li>
+				</ul>
+			</div>
+		</nav>
+
+
+
+	  <!--<div class="carousel">
+	    <a class="carousel-item" href="#one!"><img src="http://clipartist.net/links/clipartist.net/tux_asleep_2-555px.png"></a>
+	    <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"></a>
+	    <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"></a>
+	    <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"></a>
+	    <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"></a>
+	  </div>-->
+
+
+	  <!--<div class="carousel carousel-slider center" data-indicators="true">
+	    <div class="carousel-fixed-item center">
+	      <a class="btn waves-effect white grey-text darken-text-2">button</a>
+	    </div>
+	    <div class="carousel-item red white-text" href="#one!">
+	      <h2>First Panel</h2>
+	      <p class="white-text">This is your first panel</p>
+	    </div>
+	    <div class="carousel-item amber white-text" href="#two!">
+	      <h2>Second Panel</h2>
+	      <p class="white-text">This is your second panel</p>
+	    </div>
+	    <div class="carousel-item green white-text" href="#three!">
+	      <h2>Third Panel</h2>
+	      <p class="white-text">This is your third panel</p>
+	    </div>
+	    <div class="carousel-item blue white-text" href="#four!">
+	      <h2>Fourth Panel</h2>
+	      <p class="white-text">This is your fourth panel</p>
+	    </div>
+	  </div>-->
+
+
+		<div class="row">
+			<div class="col s12 m12">
+					<div class="card col s12 m6">
+							<div class="card-image waves-effect waves-block waves-light">
+								<div id="curve_chart" class="z-depth-2" style="height: 400px"></div>
+								<span class="card-title"></span>
+							</div>
+
+							<div class="card-content">
+					      <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+					      <p><a href="#">This is a link</a></p>
+					    </div>
+
+							<div class="card-reveal">
+		            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></i></span>
+		            <p>Here is some more information about this product that is only revealed once clicked on.</p>
+		          </div>
+							<div class="card-action">
+								<a href="#">This is a link</a>
+							</div>
+					</div>
+
+					<div class="col s12 m3">
+		        <div class="card yellow darken-1">
+		          <div class="card-content white-text">
+		            <span class="card-title">Card Title</span>
+		            <p>I am a very simple card. I am good at containing small bits of information.
+		            I am convenient because I require little markup to use effectively.</p>
+		          </div>
+		          <div class="card-action">
+		            <a href="#" style="color: #ffb64b">This is a link</a>
+		            <a href="#" style="color: #ffb64b">This is a link</a>
+		          </div>
+		        </div>
+		      </div>
+
+					<div class="col s12 m3">
+		        <div class="card blue darken-1">
+		          <div class="card-content white-text">
+		            <span class="card-title">Card Title</span>
+		            <p>I am a very simple card. I am good at containing small bits of information.
+		            I am convenient because I require little markup to use effectively.</p>
+		          </div>
+		          <div class="card-action">
+		            <a href="#" style="color: #ffb64b">This is a link</a>
+		            <a href="#" style="color: #ffb64b">This is a link</a>
+		          </div>
+		        </div>
+		      </div>
+
+					<div class="col s12 m6">
+		        <div class="card red darken-1">
+		          <div class="card-content white-text">
+		            <span class="card-title">Card Title</span>
+		            <p>I am a very simple card. I am good at containing small bits of information.
+		            I am convenient because I require little markup to use effectively.</p>
+		          </div>
+		          <div class="card-action">
+		            <a href="#" style="color: #ffb64b">This is a link</a>
+		            <a href="#" style="color: #ffb64b">This is a link</a>
+		          </div>
+		        </div>
+		      </div>
+			</div>
+
+    </div>
+
+
+    <!--<div class="row">
+      <div class="col s12 m2">
+        <div class="card">
+          <div class="card-image grey">
+            <img style="width: 200px; height: 200px" src="http://www.blok.koty2.com/wp-content/uploads/icons/Tux-Avatar-129.png">
+            <span class="card-title">Card Title</span>
+          </div>
+          <div class="card-content">
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+          </div>
+        </div>
+      </div>
+    </div>-->
+
+		</body>
+</html>
