@@ -1,3 +1,16 @@
+<?php
+	include_once("settings/settings.php");
+	@session_start();
+
+	$nome = $_SESSION['nome'];
+	$email = $_SESSION['email'];
+
+	if (!isset($_SESSION['email'])){
+		header('Location: login.php');
+		exit;
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 		<head>
@@ -111,7 +124,8 @@
 				<a href="#" class="center brand-logo"><i class="material-icons">contacts</i>Health Notice</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li><a href="badges.html">Sobre</a></li>
-					<li><a href="login.html">Login</a></li>
+					<li><a href="login.php">Login</a></li>
+					<li><a href="logout.php">Sair</a></li>
 				</ul>
 			</div>
 		</nav>
