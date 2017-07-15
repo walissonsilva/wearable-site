@@ -84,7 +84,7 @@
         if ($busca > 0){
           $_SESSION['nome'] = $linha['nome'];
           $_SESSION['email'] = $linha['email'];
-          header('Location: index.php');
+          header('Location: home-client.php');
           exit;
         } else {
           echo "<script language='javascript' type='text/javascript'> alert('Usuário ou senha inválido(s)!');</script>";

@@ -16,7 +16,7 @@ CREATE TABLE Paciente (
   senha varchar(100) NOT NULL,
   sexo varchar(1) NOT NULL,
   datanasc date NOT NULL,
-  PRIMARY KEY (idUsuario)
+  PRIMARY KEY (idusuario)
 );
 
 DROP TABLE IF EXISTS Medico;
@@ -30,5 +30,5 @@ CREATE TABLE Medico (
   PRIMARY KEY (idusuario)
 );
 
-INSERT INTO Paciente (cpf, altura, peso, nome, email, senha, sexo, dataNasc)
-VALUES ('00000000000', 1.75, 67, 'Walisson Silva', 'walissonsilva10@gmail.com', '123', 'M', '17/08/1995');
+INSERT INTO Paciente (cpf, altura, peso, nome, email, senha, sexo, datanasc)
+VALUES ('00000000000', 1.75, 67, 'Walisson Silva', 'walissonsilva10@gmail.com', '123', 'M', STR_TO_DATE( "17/08/1995", "%d/%m/%Y" ));

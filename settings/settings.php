@@ -2,7 +2,7 @@
 	// Dados do servidor
 	$host = "localhost";
 	$login = "root";
-	$senha = "pet33Ubuntu";
+	$senha = "363256";
 	$banco = "wearable";
 
 	$conecta = mysql_connect($host, $login, $senha) or print(mysql_error());
