@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+		<head>
+			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+			<!--Import Google Icon Font-->
+		  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		  <!--Import materialize.css-->
+		  <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		  <!--<link type="text/css" rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css"  media="screen,projection"/>-->
+		  <!--Let browser know website is optimized for mobile-->
+		  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+			<title>Health Notice</title>
+		</head>
+
+
+		<body>
+
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="center brand-logo"><i class="material-icons">contacts</i>Health Notice</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="badges.html">Sobre</a></li>
+					<li><a href="login.php">Login</a></li>
+					<li><a href="logout.php">Sair</a></li>
+				</ul>
+			</div>
+		</nav>
+
+
+		<div class="carousel carousel-slider center" data-indicators="true">
+	    <div class="carousel-fixed-item center">
+	      <a href="login.php"><button class="btn waves-effect white grey-text darken-text-2" onclick="location.href='login.php';">Entrar</button></a>
+	    </div>
+			<a class="carousel-item" href="#one!"><img src="http://www.fieldservicematters.com/wp-content/uploads/2017/01/wearables.png"></a>
+			<a class="carousel-item" href="#two!"><img src="http://aiesecdelhiiit.in/wp-content/uploads/2015/10/2.jpeg"></a>
+	    <a class="carousel-item" href="#three!"><img src="http://www.oi-me.com/blog/wp-content/uploads/2017/05/Wearable_Technology1-1200x700.jpg"></a>
+	    <a class="carousel-item" href="#four!"><img src="https://cdn2.hubspot.net/hubfs/480727/blog/Stock/wearable-2020-part-3.jpg"></a>
+	  </div>
+
+		<!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/bin/materialize.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+		<script language="javascript" type="text/javascript">
+			$('.carousel').carousel();
+			$('.carousel.carousel-slider').carousel({fullWidth: true});
+		</script>
+
+		</body>
+</html>

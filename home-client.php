@@ -112,10 +112,6 @@
 
 		<body>
 
-		<!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-
 		<nav>
 			<div class="nav-wrapper">
 				<a href="#" class="center brand-logo"><i class="material-icons">contacts</i>Health Notice</a>
@@ -126,22 +122,6 @@
 				</ul>
 			</div>
 		</nav>
-
-
-		<div class="carousel">
-		  <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/250/250/nature/1"></a>
-		  <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"></a>
-		  <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"></a>
-		  <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"></a>
-		  <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"></a>
-		</div>
-
-		<div class="carousel carousel-slider">
-	    <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/800/400/food/1"></a>
-	    <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/800/400/food/2"></a>
-	    <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/800/400/food/3"></a>
-	    <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/800/400/food/4"></a>
-	  </div>
 
 
 		<div class="row">
@@ -243,13 +223,10 @@
       </div>
     </div>-->
 
-		<script language="javascript" type="text/javascript">
-			$('.carousel').carousel();
-			$('.carousel.carousel-slider').carousel({fullWidth: true});
-		</script>
-
-
+		<!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/bin/materialize.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
 
 		</body>
 </html>
