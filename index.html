@@ -50,14 +50,14 @@
 			$('.carousel').carousel();
 			$('.carousel.carousel-slider').carousel({fullWidth: true});
 
-      let carousel = $(".carousel")
-      let altura = carousel.height() - 10
+      let carousel = $(".carousel.carousel-slider .carousel-item")
+      let altura = $(window).height()
 
       carousel.removeAttr("height")
 
       console.log(altura)
 
-      $(".carousel").css({"height": altura})
+      carousel.css({"height": altura})
 		</script>
 
 		</body>
