@@ -49,6 +49,15 @@
 		<script language="javascript" type="text/javascript">
 			$('.carousel').carousel();
 			$('.carousel.carousel-slider').carousel({fullWidth: true});
+
+      let carousel = $(".carousel")
+      let altura = carousel.height() - 10
+
+      carousel.removeAttr("height")
+
+      console.log(altura)
+
+      $(".carousel").css({"height": altura})
 		</script>
 
 		</body>
