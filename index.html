@@ -31,7 +31,7 @@
 		</nav>
 
 
-		<div class="carousel carousel-slider center" data-indicators="true">
+    <div class="carousel carousel-slider center" data-indicators="true">
 	    <div class="carousel-fixed-item center">
 	      <a href="login.php"><button class="btn waves-effect white grey-text darken-text-2" onclick="location.href='login.php';">Entrar</button></a>
 	    </div>
@@ -50,14 +50,29 @@
 			$('.carousel').carousel();
 			$('.carousel.carousel-slider').carousel({fullWidth: true});
 
-      let carousel = $(".carousel.carousel-slider .carousel-item")
-      let altura = $(window).height()
+      //window.addEventListener("resize", adaptarCarousel)
+      //window.addEventListener("load", adaptarCarousel)
 
-      carousel.removeAttr("height")
+      function adaptarCarousel() {
+        console.log("Ajustando...");
+        let carousel = $(".carousel.carousel-slider .carousel-item")
+        let altura = $(window).height()
+        let largura = $(window).width()
 
-      console.log(altura)
+        carousel.removeAttr("height")
+        carousel.removeAttr("width")
 
-      carousel.css({"height": altura})
+        //console.log(largura / 1024 * 100)
+        //console.log(largura);
+        //console.log(altura);
+
+        carousel.css({"height": (altura), "width": (100 + "vh")})
+
+        //$(window).resize(adaptarCarousel())
+      }
+
+      //$(".carousel.carousel-slider .carousel-fixed-item.with-indicators").removeAttr("bottom")
+      //$(".carousel.carousel-slider .carousel-fixed-item.with-indicators").css({"bottom": 68})
 		</script>
 
 		</body>
