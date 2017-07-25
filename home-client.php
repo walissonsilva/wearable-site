@@ -29,7 +29,7 @@
 			<title>Health Notice</title>
 
 			<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	    <script type="text/javascript">
+	    <!--<script type="text/javascript">
 	      google.charts.load('current', {'packages':['corechart']});
 	      google.charts.setOnLoadCallback(drawChart);
 
@@ -62,51 +62,11 @@
 
 	        chart.draw(data, options);
 	      }
-	    </script>
+	    </script>-->
 
-			<script type="text/javascript">
-				 // GAUGE
+			<script type="text/javascript" src="js/myjs/atualizarGrafico.js"></script>
 
-	       google.charts.load('current', {'packages':['gauge']});
-	       google.charts.setOnLoadCallback(drawChart);
-
-	       function drawChart() {
-
-	         var data = google.visualization.arrayToDataTable([
-	           ['Label', 'Value'],
-	           ['ºC', 35.5],
-	           //['CPU', 55],
-	           //['Network', 68]
-	         ]);
-
-	         var options = {
-	           width: 800, height: 240,
-	           redFrom: 37, redTo: 100,
-	           greenFrom:35, greenTo: 37,
-	           yellowFrom:0, yellowTo:35,
-	           minorTicks: 5
-	         };
-
-	         var chart = new google.visualization.Gauge(document.querySelector('#chart_div'));
-
-	         chart.draw(data, options);
-
-	         setInterval(function() {
-	           data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-	           chart.draw(data, options);
-	         }, 13000);
-	         /*setInterval(function() {
-	           data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
-	           chart.draw(data, options);
-	         }, 5000);
-	         setInterval(function() {
-	           data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
-	           chart.draw(data, options);
-	         }, 26000);*/
-	       }
-	     </script>
-
-			 <script src="//cdn.transifex.com/live.js"></script>
+			<script src="//cdn.transifex.com/live.js"></script>
 		</head>
 
 
@@ -124,7 +84,7 @@
 		</nav>
 
 
-		<div class="row">
+		<div class="row" style="margin-top: 20px;">
 			<div class="col s12 m12">
 				<div class="col s12 m3">
 					<div class="card red darken-1">
