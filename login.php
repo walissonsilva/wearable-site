@@ -77,9 +77,9 @@
         echo "<script language='javascript' type='text/javascript'> alert('Você precisa preencher todos os campos!');</script>";
       } else {
         $query = "SELECT * FROM Paciente WHERE email = '$email' AND senha = '$senha'";
-        $result = mysql_query($query);
-        $busca = mysql_num_rows($result);
-        $linha = mysql_fetch_assoc($result);
+        $result = mysqli_query($conecta, $query);
+        $busca = mysqli_num_rows($result);
+        $linha = mysqli_fetch_assoc($result);
 
         if ($busca > 0){
           $_SESSION['nome'] = $linha['nome'];
@@ -87,6 +87,18 @@
           header('Location: home-client.php');
           exit;
         } else {
+          $query = "SELECT * FROM Medico WHERE email = '$email' AND senha = '$senha'";
+          $result = mysqli_query($conecta, $query);
+          $busca = mysqli_num_rows($result);
+          $linha = mysqli_fetch_assoc($result);
+
+          if ($busca > 0){
+            $_SESSION['nome'] = $linha['nome'];
+            $_SESSION['email'] = $linha['email'];
+            header('Location: home-doctor.php');
+            exit;
+          }
+
           echo "<script language='javascript' type='text/javascript'> alert('Usuário ou senha inválido(s)!');</script>";
         }
       }

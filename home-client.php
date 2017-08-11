@@ -26,65 +26,43 @@
 		  <!--Let browser know website is optimized for mobile-->
 		  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+		  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
 			<title>Health Notice</title>
 
 			<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	    <!--<script type="text/javascript">
-	      google.charts.load('current', {'packages':['corechart']});
-	      google.charts.setOnLoadCallback(drawChart);
-
-				// DOCUMENTAÇÃO >> https://developers.google.com/chart/interactive/docs/gallery/linechart
-
-	      function drawChart() {
-	        var data = google.visualization.arrayToDataTable([
-	          ['Year', 'Sales', 'Expenses'],
-	          ['2004',  1000,      400],
-	          ['2005',  1170,      460],
-	          ['2006',  660,       1120],
-	          ['2007',  1030,      540],
-						['2008',  980,      620],
-						['2009',  1002,     690],
-						['2010',  1100,      470],
-						['2011',  760,      840],
-						['2012',  1030,      620]
-	        ]);
-
-	        var options = {
-	          title: 'Company Performance',
-	          curveType: 'none',
-	          legend: { position: 'bottom' },
-						backgroundColor: '#fff',//'#C9DAE6',
-						colors: ['#DE0015', '#FFAE07'],
-						lineWidth: 3
-	        };
-
-	        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-	        chart.draw(data, options);
-	      }
-	    </script>-->
-
-			<script type="text/javascript" src="js/myjs/atualizarGrafico.js"></script>
-
-			<script src="//cdn.transifex.com/live.js"></script>
 		</head>
 
 
 		<body>
 
-		<nav>
+		<ul id="dropdown1" class="dropdown-content">
+			<li><a href="doctor-profile-edit.php">Editar perfil</a></li>
+			<li class="divider"></li>
+			<li><a href="logout.php">Sair</a></li>
+		</ul>
+
+		<nav class="nav-extended">
 			<div class="nav-wrapper">
 				<a href="#" class="center brand-logo"><i class="material-icons">contacts</i>Health Notice</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
-					<li><a href="badges.html">Sobre</a></li>
-					<li><a href="login.php">Login</a></li>
-					<li><a href="logout.php">Sair</a></li>
+					<li><a class="dropdown-button" href="#" data-activates="dropdown1"><i class="material-icons">menu</i></a></li>
+				</ul>
+			</div>
+
+			<div class="nav-content">
+				<ul class="tabs tabs-transparent">
+					<li class="tab"><a href="#heart_rate">Frequência Cardíaca</a></li>
+					<li class="tab"><a href="#temperature">Temperatura</a></li>
+					<li class="tab"><a href="#passos">Passos</a></li>
 				</ul>
 			</div>
 		</nav>
 
 
-		<div class="row" style="margin-top: 20px;">
+		<div id="heart_rate" class="row" style="margin-top: 5px;">
 			<div class="col s12 m12">
 				<div class="col s12 m3">
 					<div class="card red darken-1">
@@ -164,29 +142,12 @@
 				</div>
     </div>
 
-
-    <!--<div class="row">
-      <div class="col s12 m2">
-        <div class="card">
-          <div class="card-image grey">
-            <img style="width: 200px; height: 200px" src="http://www.blok.koty2.com/wp-content/uploads/icons/Tux-Avatar-129.png">
-            <span class="card-title">Card Title</span>
-          </div>
-          <div class="card-content">
-            <p>I am a very simple card. I am good at containing small bits of information.
-            I am convenient because I require little markup to use effectively.</p>
-          </div>
-          <div class="card-action">
-            <a href="#">This is a link</a>
-          </div>
-        </div>
-      </div>
-    </div>-->
-
 		<!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/bin/materialize.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/myjs/atualizarGrafico.js"></script>
+		<script src="//cdn.transifex.com/live.js"></script>
 
-		</body>
+	</body>
 </html>

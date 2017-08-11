@@ -30,5 +30,18 @@ CREATE TABLE Medico (
   PRIMARY KEY (idusuario)
 );
 
+DROP TABLE IF EXISTS Data;
+
+CREATE TABLE Data (
+  id_data integer NOT NULL auto_increment,
+  created_at varchar(20) NOT NULL,
+  freq integer NOT NULL,
+  PRIMARY KEY (id_data)
+);
+
 INSERT INTO Paciente (cpf, altura, peso, nome, email, senha, sexo, datanasc)
 VALUES ('00000000000', 1.75, 67, 'Walisson Silva', 'walissonsilva10@gmail.com', '123', 'M', STR_TO_DATE( "17/08/1995", "%d/%m/%Y" ));
+INSERT INTO Paciente (cpf, altura, peso, nome, email, senha, sexo, datanasc)
+VALUES ('00000000001', 1.75, 67, 'ROOT', 'paciente@gmail.com', '123', 'M', STR_TO_DATE( "17/08/1995", "%d/%m/%Y" ));
+INSERT INTO Medico (crm, nome, email, senha)
+VALUES ('00000000002', 'ROOT', 'medico@gmail.com', '123');
