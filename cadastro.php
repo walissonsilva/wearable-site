@@ -1,6 +1,5 @@
 <?php
   include_once("settings/settings.php");
-  @session_start();
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +26,7 @@
 <body>
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="center brand-logo" class="brand-logo"><i class="material-icons">contacts</i>Health Notice</a>
+      <a href="index.html" class="center brand-logo" class="brand-logo"><i class="material-icons">contacts</i>Health Notice</a>
     </div>
   </nav>
   <div class="container login-container">
@@ -125,7 +124,7 @@
       $email = $_POST['email'] or null;
       $login = $email;
       $tipo = $_POST['tipo'] or null;
-      $senha = $_POST['password'] or null;    // TODO Adicionar o MD5
+      $senha = $_POST['senha'] or null;    // TODO Adicionar o MD5
       $sexo = $_POST['sexo'] or null;
       $peso = $_POST['peso'] or null;
       $altura = $_POST['altura'] or null;
@@ -156,8 +155,8 @@
       }
 
       $sql = "SELECT * FROM $tabela WHERE email = '$login'";
-      $resultado = mysql_query($sql);
-      $row = mysql_fetch_array($resultado);
+      $resultado = mysqli_query($conecta, $sql);
+      $row = mysqli_fetch_array($resultado);
       $logarray = $row['email'];
 
       if(empty($login) || $login == null){
@@ -168,7 +167,7 @@
           die();
         } else {
           $sql = "SELECT * FROM $tabela WHERE idusuario = (SELECT MAX(idusuario) FROM $tabela)";
-          $resultado = mysql_query($sql);
+          $resultado = mysqli_query($conecta, $sql);
           $row = mysqli_fetch_array($resultado);
           $proxid = $row['idusuario'];
 
@@ -185,17 +184,20 @@
             echo '<pre>' . var_dump($peso) . '</pre>';
             echo '<pre>' . var_dump($nome) . '</pre>';
             echo '<pre>' . var_dump($email) . '</pre>';
-            echo '<pre>' . var_dump($password) . '</pre>';
+            echo '<pre>' . var_dump($senha) . '</pre>';
             echo '<pre>' . var_dump($sexo) . '</pre>';
             echo '<pre>' . var_dump('$ano/$mes/$dia') . '</pre>';
 
-            $sql = "INSERT INTO $tabela VALUES($proxid, '$cpf', $altura, $peso, '$nome', '$email', '$senha', '$sexo', '$ano/$mes/$dia')";
+            $peso = "D00P" . strval($peso);
+            $altura = "D00A" . strval($altura);
+
+            $sql = "INSERT INTO $tabela VALUES($proxid, '$cpf', '$altura', '$peso', '$nome', '$email', '$senha', '$sexo', '$ano/$mes/$dia')";
 
           } else {
             $sql = "INSERT INTO $tabela VALUES($proxid, '$crm', '$nome', '$email', '$senha')";
           }
 
-          $insert = mysql_query($sql);
+          $insert = mysqli_query($conecta, $sql);
           if($insert){
             echo"<script language='javascript' type='text/javascript'>alert('Usuário cadastrado com sucesso!');</script>";
           } else {
@@ -204,15 +206,34 @@
         }
       }
 
-      $resultado = mysql_query($sql) or die ("Erro na seleção da tabela.");
+      $sql = "SELECT * FROM $tabela WHERE nome = '$nome'";
+      $resultado = mysqli_query($conecta, $sql) or die ("Erro na seleção da tabela.");
 
       //Caso consiga logar cria a sessão
-      if (mysql_num_rows($resultado) > 0) {
+      if (mysqli_num_rows($resultado) > 0) {
           // session_start inicia a sessão
           session_start();
 
-          $_SESSION['email'] = $login;
-          $_SESSION['senha'] = $senha;
+          $linha = mysqli_fetch_assoc($resultado);
+
+          if ($tabela == "Paciente"){
+            echo "Consegui!";
+            $_SESSION['id'] = $linha['idusuario'];
+            $_SESSION['nome'] = $linha['nome'];
+            $_SESSION['email'] = $linha['email'];
+            $_SESSION['peso'] = $linha['peso'];
+            $_SESSION['altura'] = $linha['altura'];
+            $_SESSION['tipo'] = "paciente";
+            echo "<script>location.href='home-client.php';</script>";
+            exit;
+          } elseif ($tabela == "Medico") {
+            $_SESSION['id'] = $linha['idusuario'];
+            $_SESSION['nome'] = $linha['nome'];
+            $_SESSION['email'] = $linha['email'];
+            $_SESSION['tipo'] = "medico";
+            echo "<script>location.href='home-doctor.php';</script>";
+            exit;
+          }
       } else { // Caso contrário redireciona para a página de autenticação
           //Destrói
           session_destroy();
@@ -247,7 +268,6 @@
     $(document).ready(function() {
       $('select').material_select();
     });
-
     $('.datepicker').pickadate({
       selectMonths: true, // Creates a dropdown to control month
       selectYears: 120, // Creates a dropdown of 15 years to control year
@@ -267,17 +287,14 @@
       min: [1900,1,1],      // year, month, date
       max: [2016,9,2],      // year, month, date
     });
-
     var typeSelector = document.querySelector('#tipo');
     var type = typeSelector.options[typeSelector.selectedIndex].value;
     updateFieldsVisibility(type);
-
     typeSelector.onchange = function() {
       type  = typeSelector.options[typeSelector.selectedIndex].value;
       updateFieldsVisibility(type);
       cleanFields();
     }
-
     function cleanFields() {
       document.querySelector('#crm').value = null;
       document.querySelector('#cpf').value = null;
@@ -285,7 +302,6 @@
       document.querySelector('#nascimento').value = null;
       document.querySelector('#sexo').value = null;
     }
-
     function updateFieldsVisibility(type) {
       if(type == 'med') {
         document.querySelector('#crm').style.visibility = "visible";
@@ -300,7 +316,6 @@
         document.querySelector('#sexo').style.display = "none";
         document.querySelector('#submit-button').style.visibility = "visible";
         document.querySelector('#submit-button').style.display = "block";
-
         document.querySelector('#prompt').style.display = "none";
         document.querySelector('#prompt').style.visibility = "hidden";
       } else {
@@ -311,14 +326,12 @@
           document.querySelector('#nascimento').style.visibility = "visible";
           document.querySelector('#sexo').style.visibility = "visible";
           document.querySelector('#submit-button').style.visibility = "visible";
-
           document.querySelector('#crm').style.display = "none";
           document.querySelector('#cpf').style.display = "block";
           document.querySelector('#metrica-corporal').style.display = "block";
           document.querySelector('#nascimento').style.display = "block";
           document.querySelector('#sexo').style.display = "block";
           document.querySelector('#submit-button').style.display = "block";
-
           document.querySelector('#prompt').style.display = "none";
           document.querySelector('#prompt').style.visibility = "hidden";
         } else {
@@ -328,20 +341,17 @@
           document.querySelector('#nascimento').style.visibility = "hidden";
           document.querySelector('#sexo').style.visibility = "hidden";
           document.querySelector('#submit-button').style.visibility = "hidden";
-
           document.querySelector('#crm').style.display = "none";
           document.querySelector('#cpf').style.display = "none";
           document.querySelector('#metrica-corporal').style.display = "none";
           document.querySelector('#nascimento').style.display = "none";
           document.querySelector('#sexo').style.display = "none";
           document.querySelector('#submit-button').style.display = "none";
-
           document.querySelector('#prompt').style.display = "block";
           document.querySelector('#prompt').style.visibility = "visible";
         }
       }
     }
-
   </script>
 </body>
 </html>

@@ -1,6 +1,22 @@
 <?php
   include_once("settings/settings.php");
   @session_start();
+
+  $tipo = $_SESSION['tipo'];
+  $nome = $_SESSION['nome'];
+  $email = $_SESSION['email'];
+
+  echo $tipo;
+
+  if (isset($_SESSION['email'])){
+    if ($tipo == "paciente"){
+      header('Location: home-client.php');
+      exit;
+    } elseif ($tipo == "medico"){
+      header('Location: home-doctor.php');
+      exit;
+    }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +43,7 @@
 <body>
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="center brand-logo" class="brand-logo"><i class="material-icons">contacts</i>Health Notice</a>
+      <a href="login.php" class="center brand-logo" class="brand-logo"><i class="material-icons">contacts</i>Health Notice</a>
     </div>
   </nav>
   <div class="container login-container">
@@ -49,11 +65,9 @@
         </div>
         <div class="row center">
           <div class="col m6">
-            <a href="cadastro.php">
-              <button class="btn waves-effect waves-light" name="cadastro" id="cadastro">
-                Cadastrar-se <i class="material-icons right">assignment</i>
-              </button>
-            </a>
+            <button class="btn waves-effect waves-light" name="cadastro" id="cadastro" formaction="cadastro.php">
+              Cadastrar-se <i class="material-icons right">assignment</i>
+            </button>
           </div>
 
           <div class="col m6">
@@ -82,8 +96,12 @@
         $linha = mysqli_fetch_assoc($result);
 
         if ($busca > 0){
+          $_SESSION['id'] = $linha['idusuario'];
           $_SESSION['nome'] = $linha['nome'];
           $_SESSION['email'] = $linha['email'];
+          $_SESSION['peso'] = $linha['peso'];
+          $_SESSION['altura'] = $linha['altura'];
+          $_SESSION['tipo'] = "paciente";
           header('Location: home-client.php');
           exit;
         } else {
@@ -93,8 +111,10 @@
           $linha = mysqli_fetch_assoc($result);
 
           if ($busca > 0){
+            $_SESSION['id'] = $linha['idusuario'];
             $_SESSION['nome'] = $linha['nome'];
             $_SESSION['email'] = $linha['email'];
+            $_SESSION['tipo'] = "medico";
             header('Location: home-doctor.php');
             exit;
           }
@@ -120,7 +140,7 @@
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="js/bin/materialize.js"></script>
-  <script type="text/javascript" src="js/myjs/login.js"></script>
+  <!--<script type="text/javascript" src="js/myjs/login.js"></script>-->
 
 </body>
 </html>

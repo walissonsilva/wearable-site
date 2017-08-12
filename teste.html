@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>FusionCharts Column 2D Sample</title>
+	</head>
+	<body>
+	  <div id="chart-container">FusionCharts will render here</div>
+	  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	  <script>
+	  	$(function(){
+		  $.ajax({
+		    url: 'teste.php',
+		    type: 'GET',
+		    success : function(data) {
+		      chartData = data;
+		      let local = document.querySelector("#chart-container");
+		      local.innerHTML = chartData;
+		      console.log(chartData.find('created_at'))
+		    }
+		  });
+		});
+	  </script>
+	</body>
+</html>

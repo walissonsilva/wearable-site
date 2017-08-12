@@ -684,7 +684,7 @@
 }
 
 .blue.lighten-1 {
-  background-color: #1E56E3 !important;
+  background-color: rgb(0, 212, 204) !important;
 }
 
 .blue-text.text-lighten-1 {
@@ -3302,6 +3302,10 @@ input[type=range] + .thumb {
   margin-right: auto;
 }
 
+.center-text {
+  text-align: center;
+}
+
 .truncate {
   display: block;
   white-space: nowrap;
@@ -4763,6 +4767,11 @@ small {
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.card.tiny {
+  min-height: 250px;
+  max-height: 250px;
 }
 
 .card.small {
