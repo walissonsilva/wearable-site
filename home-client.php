@@ -223,7 +223,7 @@
 
     <!-- ################## TEMPERATURA ########################## -->
 
-    <div id="temperature" class="row">
+    <div id="temperature" class="row" style="margin-top: 5px;">
     	<div class="col s12 m12">
 				<div class="col s12 m3">
 					<div class="card red darken-1">
@@ -316,12 +316,12 @@
 							</div>
 
 							<div class="card-content">
-					      <span class="card-title activator grey-text text-darken-4">Frequência Cardíaca<i class="material-icons right">more_vert</i></span>
+					      <span class="card-title activator grey-text text-darken-4">Temperatura Corporal<i class="material-icons right">more_vert</i></span>
 					      <p><a href="#">This is a link</a></p>
 					    </div>
 
 							<div class="card-reveal">
-		            <span class="card-title grey-text text-darken-4">Frequência Cardíaca<i class="material-icons right">close</i></i></span>
+		            <span class="card-title grey-text text-darken-4">Temperatura Corporal<i class="material-icons right">close</i></i></span>
 		            <p>Veja na Tabela abaixo mais detalhes das leituras realizadas.</p>
 		            <table class="striped">
 		            	<thead><tr><th>Data</th><th>Hora</th><th>Leitura</th></tr></thead>
@@ -457,7 +457,8 @@
 		<script type="text/javascript" src="js/myjs/functions.js"></script>
 		<script>
 			$( document ).ready(function() {
-				updateChart("getFreq.php")
+				updateChartFreq()
+				updateChartTemp()
 				updateIMC("<?php echo $peso; ?>", "<?php echo $altura; ?>", "<?php echo $nome; ?>")
 			});
 		</script>

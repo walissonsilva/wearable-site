@@ -13,14 +13,14 @@
 	  $linha = mysqli_fetch_assoc($result);
 	  
 	  if ($busca > 0){
-	  	$freq_json = json_decode(file_get_contents($linha['freq']));
+	  	$freq_json = json_decode(file_get_contents($linha['temp']));
 	  }
 
 	  // Observar se os valores lidos no JSON já existem no Banco de Dados
 		for ($i = 0; $i < 50; $i++){
 			$time = $freq_json->feeds[$i]->created_at;
 		  $value = $freq_json->feeds[$i]->field1;
-			$query = "SELECT * FROM Freq WHERE created_at = '{$time}' AND id_paciente = {$id}";
+			$query = "SELECT * FROM Temp WHERE created_at = '{$time}' AND id_paciente = {$id}";
 		  $result = mysqli_query($conecta, $query);
 		  $busca = mysqli_num_rows($result);
 		  $linha = mysqli_fetch_assoc($result);
@@ -29,9 +29,9 @@
 		  	echo '';
 		  } else {
 		  	$time = $freq_json->feeds[$i]->created_at;
-		  	$value = $freq_json->feeds[$i]->field1;
+		  	$value = $freq_json->feeds[$i]->field2;
 		  	if ($value != null){
-		  		$query = "INSERT INTO Freq (id_paciente, created_at, freq) VALUES ($id, '{$time}', {$value})";
+		  		$query = "INSERT INTO Temp (id_paciente, created_at, temp) VALUES ($id, '{$time}', '{$value}')";
 		  		$result = mysqli_query($conecta, $query);
 		  	}
 		  }
@@ -40,7 +40,7 @@
 		echo '';
 	}
 
-	$query = "SELECT * FROM Freq WHERE id_paciente = $id";
+	$query = "SELECT * FROM Temp WHERE id_paciente = $id";
 	$result = mysqli_query($conecta, $query);
 	$busca = mysqli_num_rows($result);
 
@@ -51,7 +51,7 @@
 			$jsonArrayItem = array();
 			$jsonArrayItem['id_paciente'] = $id;
 			$jsonArrayItem['created_at'] = $row['created_at'];
-			$jsonArrayItem['freq'] = $row['freq'];
+			$jsonArrayItem['temp'] = $row['temp'];
 
 			array_push($jsonArray, $jsonArrayItem);
 		}

@@ -30,13 +30,33 @@ CREATE TABLE Medico (
   PRIMARY KEY (idusuario)
 );
 
-DROP TABLE IF EXISTS Data;
+DROP TABLE IF EXISTS Freq;
 
-CREATE TABLE Data (
+CREATE TABLE Freq (
   id_data integer NOT NULL auto_increment,
   id_paciente integer NOT NULL,
   created_at varchar(20) NOT NULL,
   freq integer NOT NULL,
+  PRIMARY KEY (id_data)
+);
+
+DROP TABLE IF EXISTS Temp;
+
+CREATE TABLE Temp (
+  id_data integer NOT NULL auto_increment,
+  id_paciente integer NOT NULL,
+  created_at varchar(20) NOT NULL,
+  temp varchar(10) NOT NULL,
+  PRIMARY KEY (id_data)
+);
+
+DROP TABLE IF EXISTS Passos;
+
+CREATE TABLE Passos (
+  id_data integer NOT NULL auto_increment,
+  id_paciente integer NOT NULL,
+  created_at varchar(20) NOT NULL,
+  passos integer NOT NULL,
   PRIMARY KEY (id_data)
 );
 
@@ -58,4 +78,4 @@ VALUES ('00000000001', 'D00A175', 'D00P67', 'ROOT', 'paciente@gmail.com', '123',
 INSERT INTO Medico (crm, nome, email, senha)
 VALUES ('00000000002', 'ROOT', 'medico@gmail.com', '123');
 INSERT INTO Json (id_paciente, freq, temp, passos)
-VALUES ('1', 'https://api.thingspeak.com/channels/306028/fields/1.json?api_key=DTWASHAB2FDWY6HC&results=8', 'https://api.thingspeak.com/channels/306028/fields/2.json?api_key=DTWASHAB2FDWY6HC&results=8', 'https://api.thingspeak.com/channels/306028/fields/3.json?api_key=DTWASHAB2FDWY6HC&results=8');
+VALUES ('1', 'https://api.thingspeak.com/channels/306028/fields/1.json?api_key=DTWASHAB2FDWY6HC&results=50', 'https://api.thingspeak.com/channels/306028/fields/2.json?api_key=DTWASHAB2FDWY6HC&results=50', 'https://api.thingspeak.com/channels/306028/fields/3.json?api_key=DTWASHAB2FDWY6HC&results=50');
