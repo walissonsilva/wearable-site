@@ -163,7 +163,7 @@
 		            <span class="card-title grey-text text-darken-4">Frequência Cardíaca<i class="material-icons right">close</i></i></span>
 		            <p>Veja na Tabela abaixo mais detalhes das leituras realizadas.</p>
 		            <table class="striped">
-		            	<thead><tr><th>Data</th><th>Hora</th><th>Leitura</th></tr></thead>
+		            	<thead><tr><th>Data</th><th>Hora</th><th>Leitura (BPM)</th></tr></thead>
 		            	<tbody id="tab-freq"></tbody>
 		            </table>
 		          </div>
@@ -325,7 +325,7 @@
 		            <span class="card-title grey-text text-darken-4">Temperatura Corporal<i class="material-icons right">close</i></i></span>
 		            <p>Veja na Tabela abaixo mais detalhes das leituras realizadas.</p>
 		            <table class="striped">
-		            	<thead><tr><th>Data</th><th>Hora</th><th>Leitura</th></tr></thead>
+		            	<thead><tr><th>Data</th><th>Hora</th><th>Leitura (°C)</th></tr></thead>
 		            	<tbody id="tab-temp"></tbody>
 		            </table>
 		          </div>

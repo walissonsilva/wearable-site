@@ -309,22 +309,22 @@ function updateChartTemp() {
           let id_card04 = document.getElementById(idCard04)
 
           if (!isNaN(maior_temp) && maior_temp){
-            id_card01.innerHTML = `<p class="estilo-card">${maior_temp} BPM</p><br><p>Maior valor lido nos últimos sete dias. Medição realizada em ${maior_date} às ${maior_time}.</p>`
+            id_card01.innerHTML = `<p class="estilo-card">${maior_temp} °C</p><br><p>Maior valor lido nos últimos sete dias. Medição realizada em ${maior_date} às ${maior_time}.</p>`
           } else {
-            id_card01.innerHTML = `<p class="estilo-card">0 BPM</p><br><p>Maior valor lido nos últimos sete dias. <b>Não foi possível exibir esse valor.</b></p>`
+            id_card01.innerHTML = `<p class="estilo-card">0 °C</p><br><p>Maior valor lido nos últimos sete dias. <b>Não foi possível exibir esse valor.</b></p>`
           }
 
           if (qtd_soma){
             let media = soma_temp / qtd_soma
-            id_card03.innerHTML = `<p class="estilo-card">${media} BPM</p><br><p>Média dos valores lidos nos últimos sete dias.</p>`
+            id_card03.innerHTML = `<p class="estilo-card">${media} °C</p><br><p>Média dos valores lidos nos últimos sete dias.</p>`
           } else {
-            id_card03.innerHTML = `<p class="estilo-card">0 BPM</p><br><p><b>Não foi possível obter a média dos valores lidos nos últimos sete dias.</b></p>`
+            id_card03.innerHTML = `<p class="estilo-card">0 °C</p><br><p><b>Não foi possível obter a média dos valores lidos nos últimos sete dias.</b></p>`
           }
 
           if (!isNaN(ultimo_valor)){
-            id_card02.innerHTML = `<p class="estilo-card">${ultimo_valor} BPM</p><br><p>Valor obtido na última medição. Medição realizada em ${ultima_data} às ${ultimo_time}.</p>`
+            id_card02.innerHTML = `<p class="estilo-card">${ultimo_valor} °C</p><br><p>Valor obtido na última medição. Medição realizada em ${ultima_data} às ${ultimo_time}.</p>`
           } else  {
-            id_card02.innerHTML = `<p style="font-size: 50px; text-align: center; display: block; border: solid 2px white; box-shadow: 0px 0px 20px white;">0 BPM</p><br><p><b>Não foi possível obter o valor da última medição realizada.</b></p>`
+            id_card02.innerHTML = `<p style="font-size: 50px; text-align: center; display: block; border: solid 2px white; box-shadow: 0px 0px 20px white;">0 °C</p><br><p><b>Não foi possível obter o valor da última medição realizada.</b></p>`
           }
         }
       });
