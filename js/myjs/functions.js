@@ -139,22 +139,22 @@ function updateChartFreq() {
           let id_card04 = document.getElementById(idCard04)
 
           if (!isNaN(maior_freq) && maior_freq){
-            id_card01.innerHTML = `<p style="font-size: 50px; text-align: center; display: block; border: solid 2px white; box-shadow: 0px 0px 20px white">${maior_freq} BPM</p><br><p>Maior valor lido nos últimos sete dias. Medição realizada em ${maior_date} às ${maior_time}.</p>`
+            id_card01.innerHTML = `<p class="estilo-card">${maior_freq} BPM</p><br><p>Maior valor lido nos últimos sete dias. Medição realizada em ${maior_date} às ${maior_time}.</p>`
           } else {
-            id_card01.innerHTML = `<p style="font-size: 50px; text-align: center; display: block; border: solid 2px white; box-shadow: 0px 0px 20px white">0 BPM</p><br><p>Maior valor lido nos últimos sete dias. <b>Não foi possível exibir esse valor.</b></p>`
+            id_card01.innerHTML = `<p class="estilo-card">0 BPM</p><br><p>Maior valor lido nos últimos sete dias. <b>Não foi possível exibir esse valor.</b></p>`
           }
 
           if (qtd_soma){
             let media = soma_freq / qtd_soma
-            id_card03.innerHTML = `<p style="font-size: 50px; text-align: center;  display: block; border: solid 2px white; box-shadow: 0px 0px 20px white">${media} BPM</p><br><p>Média dos valores lidos nos últimos sete dias.</p>`
+            id_card03.innerHTML = `<p class="estilo-card">${media} BPM</p><br><p>Média dos valores lidos nos últimos sete dias.</p>`
           } else {
-            id_card03.innerHTML = `<p style="font-size: 50px; text-align: center; display: block; border: solid 2px white; box-shadow: 0px 0px 20px white">0 BPM</p><br><p><b>Não foi possível obter a média dos valores lidos nos últimos sete dias.</b></p>`
+            id_card03.innerHTML = `<p class="estilo-card">0 BPM</p><br><p><b>Não foi possível obter a média dos valores lidos nos últimos sete dias.</b></p>`
           }
 
           if (!isNaN(ultimo_valor)){
-            id_card02.innerHTML = `<p style="font-size: 50px; text-align: center;  display: block; border: solid 2px white; box-shadow: 0px 0px 20px white">${ultimo_valor} BPM</p><br><p>Valor obtido na última medição. Medição realizada em ${ultima_data} às ${ultimo_time}.</p>`
+            id_card02.innerHTML = `<p class="estilo-card">${ultimo_valor} BPM</p><br><p>Valor obtido na última medição. Medição realizada em ${ultima_data} às ${ultimo_time}.</p>`
           } else  {
-            id_card02.innerHTML = `<p style="font-size: 50px; text-align: center; display: block; border: solid 2px white; box-shadow: 0px 0px 20px white">0 BPM</p><br><p><b>Não foi possível obter o valor da última medição realizada.</b></p>`
+            id_card02.innerHTML = `<p class="estilo-card">0 BPM</p><br><p><b>Não foi possível obter o valor da última medição realizada.</b></p>`
           }
         }
       });
@@ -309,22 +309,22 @@ function updateChartTemp() {
           let id_card04 = document.getElementById(idCard04)
 
           if (!isNaN(maior_temp) && maior_temp){
-            id_card01.innerHTML = `<p style="font-size: 50px; text-align: center; display: block; border: solid 2px white; box-shadow: 0px 0px 20px white">${maior_temp} BPM</p><br><p>Maior valor lido nos últimos sete dias. Medição realizada em ${maior_date} às ${maior_time}.</p>`
+            id_card01.innerHTML = `<p class="estilo-card">${maior_temp} BPM</p><br><p>Maior valor lido nos últimos sete dias. Medição realizada em ${maior_date} às ${maior_time}.</p>`
           } else {
-            id_card01.innerHTML = `<p style="font-size: 50px; text-align: center; display: block; border: solid 2px white; box-shadow: 0px 0px 20px white">0 BPM</p><br><p>Maior valor lido nos últimos sete dias. <b>Não foi possível exibir esse valor.</b></p>`
+            id_card01.innerHTML = `<p class="estilo-card">0 BPM</p><br><p>Maior valor lido nos últimos sete dias. <b>Não foi possível exibir esse valor.</b></p>`
           }
 
           if (qtd_soma){
             let media = soma_temp / qtd_soma
-            id_card03.innerHTML = `<p style="font-size: 50px; text-align: center;  display: block; border: solid 2px white; box-shadow: 0px 0px 20px white">${media} BPM</p><br><p>Média dos valores lidos nos últimos sete dias.</p>`
+            id_card03.innerHTML = `<p class="estilo-card">${media} BPM</p><br><p>Média dos valores lidos nos últimos sete dias.</p>`
           } else {
-            id_card03.innerHTML = `<p style="font-size: 50px; text-align: center; display: block; border: solid 2px white; box-shadow: 0px 0px 20px white">0 BPM</p><br><p><b>Não foi possível obter a média dos valores lidos nos últimos sete dias.</b></p>`
+            id_card03.innerHTML = `<p class="estilo-card">0 BPM</p><br><p><b>Não foi possível obter a média dos valores lidos nos últimos sete dias.</b></p>`
           }
 
           if (!isNaN(ultimo_valor)){
-            id_card02.innerHTML = `<p style="font-size: 50px; text-align: center;  display: block; border: solid 2px white; box-shadow: 0px 0px 20px white">${ultimo_valor} BPM</p><br><p>Valor obtido na última medição. Medição realizada em ${ultima_data} às ${ultimo_time}.</p>`
+            id_card02.innerHTML = `<p class="estilo-card">${ultimo_valor} BPM</p><br><p>Valor obtido na última medição. Medição realizada em ${ultima_data} às ${ultimo_time}.</p>`
           } else  {
-            id_card02.innerHTML = `<p style="font-size: 50px; text-align: center; display: block; border: solid 2px white; box-shadow: 0px 0px 20px white">0 BPM</p><br><p><b>Não foi possível obter o valor da última medição realizada.</b></p>`
+            id_card02.innerHTML = `<p style="font-size: 50px; text-align: center; display: block; border: solid 2px white; box-shadow: 0px 0px 20px white;">0 BPM</p><br><p><b>Não foi possível obter o valor da última medição realizada.</b></p>`
           }
         }
       });
@@ -336,6 +336,52 @@ function updateChartTemp() {
     setTimeout(drawChart, 3500)
   }
  
+}
+
+function updateChartPassos() {
+  var ctx = document.getElementById("chart_passos").getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          datasets: [{
+              label: 'Passos',
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                  }
+              }]
+          }
+      }
+  });
+
+  let id_card01 = document.getElementById("card_passos01")
+  let id_card02 = document.getElementById("card_passos02")
+
+  id_card01.innerHTML = `<br><p class="estilo-card">4,20 km</p>`
+  id_card02.innerHTML = `<br><p class="estilo-card">293 cal</p>`
 }
 
 function updateIMC(p, a, nome){

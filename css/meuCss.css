@@ -1,0 +1,23 @@
+.estilo-card {
+  font-size: 50px;
+  text-align: center;
+  display: block;
+  border: solid 2px white;
+  box-shadow: 0px 0px 10px white;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.estilo-card:hover {
+	box-shadow: 0px 0px 30px white;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+#chart_passos {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	/*max-height: 75%;
+	max-width: 100%;*/
+	min-height: 100%;
+	max-width: 70%;
+}

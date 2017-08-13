@@ -25,6 +25,7 @@
 		  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		  <!--Import materialize.css-->
 		  <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+		  <link rel="stylesheet" href="css/meuCss.css">
 		  <!--<link type="text/css" rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css"  media="screen,projection"/>-->
 		  <!--Let browser know website is optimized for mobile-->
 		  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -382,9 +383,128 @@
     </div>
 
 
+		<!-- ################## PASSOS ########################## -->
+		<div id="passos" style="padding: 5px;">
+			<div class="row">
+				<div class="card col s12 m9">
+					<div class="card-image waves-effect waves-block waves-light">
+						<canvas id="chart_passos">
+							<div class="preloader-wrapper big active" style="display: block; margin-left: auto; margin-right: auto; top: 50%;">
+						    <div class="spinner-layer spinner-blue">
+					        <div class="circle-clipper left">
+					          <div class="circle"></div>
+					        </div><div class="gap-patch">
+					          <div class="circle"></div>
+					        </div><div class="circle-clipper right">
+					          <div class="circle"></div>
+					        </div>
+					      </div>
+
+					      <div class="spinner-layer spinner-red">
+					        <div class="circle-clipper left">
+					          <div class="circle"></div>
+					        </div><div class="gap-patch">
+					          <div class="circle"></div>
+					        </div><div class="circle-clipper right">
+					          <div class="circle"></div>
+					        </div>
+					      </div>
+
+					      <div class="spinner-layer spinner-yellow">
+					        <div class="circle-clipper left">
+					          <div class="circle"></div>
+					        </div><div class="gap-patch">
+					          <div class="circle"></div>
+					        </div><div class="circle-clipper right">
+					          <div class="circle"></div>
+					        </div>
+					      </div>
+
+					      <div class="spinner-layer spinner-green">
+					        <div class="circle-clipper left">
+					          <div class="circle"></div>
+					        </div><div class="gap-patch">
+					          <div class="circle"></div>
+					        </div><div class="circle-clipper right">
+					          <div class="circle"></div>
+					        </div>
+					      </div>
+						  </div>
+						</canvas>
+						<span class="card-title"></span>
+					</div>
+
+					<div class="card-content">
+			      <span class="card-title activator grey-text text-darken-4">Quantidade de Passos<i class="material-icons right">more_vert</i></span>
+			      <p><a href="#">This is a link</a></p>
+			    </div>
+
+					<div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">Quantidade de Passos<i class="material-icons right">close</i></i></span>
+            <p>Veja na Tabela abaixo mais detalhes da quantidade de passos dados nos últimos dias.</p>
+            <table class="striped">
+            	<thead><tr><th>Data</th><th>Hora</th><th>Leitura</th></tr></thead>
+            	<tbody id="tab-passos"></tbody>
+            </table>
+          </div>
+					<div class="card-action">
+						<a href="#">This is a link</a>
+					</div>
+				</div>
+
+				<div class="col s12 m3">
+	        <div class="card blue darken-1">
+	          <div class="card-content white-text">
+	            <span class="card-title">Distância Percorrida</span>
+	            <div id="card_passos01">
+	            	<div class="preloader-wrapper big active" style="display: block; margin-left: auto; margin-right: auto; top: 50%;">
+							    <div class="spinner-layer spinner-yellow-only">
+							      <div class="circle-clipper left">
+							        <div class="circle"></div>
+							      </div><div class="gap-patch">
+							        <div class="circle"></div>
+							      </div><div class="circle-clipper right">
+							        <div class="circle"></div>
+							      </div>
+							    </div>
+							  </div>
+	            </div>
+	          </div>
+	          <div class="card-action">
+	            <a href="#" style="color: #ffb64b">This is a link</a>
+	            <a href="#" style="color: #ffb64b">This is a link</a>
+	          </div>
+	        </div>
+
+	        <div class="card red darken-1">
+	          <div class="card-content white-text">
+	            <span class="card-title">Calorias</span>
+	            <div id="card_passos02">
+	            	<div class="preloader-wrapper big active" style="display: block; margin-left: auto; margin-right: auto; top: 50%;">
+							    <div class="spinner-layer spinner-green-only">
+							      <div class="circle-clipper left">
+							        <div class="circle"></div>
+							      </div><div class="gap-patch">
+							        <div class="circle"></div>
+							      </div><div class="circle-clipper right">
+							        <div class="circle"></div>
+							      </div>
+							    </div>
+							 </div>
+	            </div>
+	          </div>
+	          <div class="card-action">
+	            <a href="#" style="color: #ffb64b">This is a link</a>
+	            <a href="#" style="color: #ffb64b">This is a link</a>
+	          </div>
+	        </div>
+	      </div>
+	     </div>
+		</div>
+		
 
 		<!-- ################## IMC ########################## -->
-    <div id="imc" style="padding: 20px;">
+    <div id="imc" style="margin-top: : 5px;">
 			<div class="row">
 				<div class="col s12 m12">
 					<div class="col s12 m6">
@@ -459,6 +579,7 @@
 			$( document ).ready(function() {
 				updateChartFreq()
 				updateChartTemp()
+				updateChartPassos()
 				updateIMC("<?php echo $peso; ?>", "<?php echo $altura; ?>", "<?php echo $nome; ?>")
 			});
 		</script>
