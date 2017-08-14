@@ -108,7 +108,7 @@
 
 					<div class="card col s12 m6">
 							<div class="card-image waves-effect waves-block waves-light">
-								<div id="chart_freq" class="z-depth-2" style="height: 312px">
+								<div id="freq_preload" style="height: 312px;">
 									<div class="preloader-wrapper big active" style="display: block; margin-left: auto; margin-right: auto; top: 50%;">
 								    <div class="spinner-layer spinner-blue">
 							        <div class="circle-clipper left">
@@ -270,7 +270,7 @@
 
 					<div class="card col s12 m6">
 							<div class="card-image waves-effect waves-block waves-light">
-								<div id="chart_temp" class="z-depth-2" style="height: 312px">
+								<div id="temp_preload" style="height: 312px;">
 									<div class="preloader-wrapper big active" style="display: block; margin-left: auto; margin-right: auto; top: 50%;">
 								    <div class="spinner-layer spinner-blue">
 							        <div class="circle-clipper left">
@@ -551,28 +551,17 @@
 	        </div>
         </div>
       </div>
-
-    	<!--<?php 
-    		$query = "SELECT * FROM Paciente WHERE idusuario = $id";
-    		$result = mysqli_query($conecta, $query);
-    		$busca = mysqli_num_rows($result);
-
-    		if ($busca > 0){
-    			$row = mysqli_fetch_assoc($result);
-    			//var_dump($row);
-    		}
-    	?>-->
     </div>
 
 		<!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<!--<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>-->
-		<script src="//cdn.transifex.com/live.js"></script>
+		<!--<script src="//cdn.transifex.com/live.js"></script>-->
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		<!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">-->
     <script type="text/javascript" src="js/bin/materialize.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.min.js"></script>
 		<script type="text/javascript" src="js/myjs/functions.js"></script>
 		<script>

@@ -1,6 +1,6 @@
 // Esta função atualiza o gráfico da Frequência Cardíaca
 function updateChartFreq() {
-  let tituloChart = 'Frequência Cardíaca (BPM)'
+  /*let tituloChart = 'Frequência Cardíaca (BPM)'
   let idChart = 'chart_freq'
   let idCard01 = "card_freq01"
   let idCard02 = "card_freq02"
@@ -164,13 +164,145 @@ function updateChartFreq() {
 
     drawChart()
     setTimeout(drawChart, 4000)
+  }*/
+
+  let qtd = 0
+
+  function drawChart() {
+    let freq = Array()
+    let tempo = Array()
+
+    $.ajax({
+      url: "getFreq.php",
+      type: 'GET',
+      success : function(data) {
+        chartData = data;
+        var obj = JSON.parse(chartData)
+
+        let id_table = document.getElementById("tab-freq")
+
+        let it = i = 0
+        let today = new Date()
+
+        let maior_freq = soma_freq = qtd_soma = 0
+        let maior_date, maior_time, ultimo_valor, ultima_data, ultimo_time
+
+        for (let [key, value] of Object.entries(obj)){
+          let dayTime = value.created_at
+          let pos = dayTime.search('T')
+          let data = dayTime.substring(0, pos)
+          let time = dayTime.substring(pos + 1, dayTime.length - 1)
+
+          let date = new Date(`${data} ${time}`)
+
+          // Organizando a data
+          pos = data.search("-")
+          year = data.substring(0, pos)
+          data = data.substring(pos + 1)
+          month = pos = data.search("-")
+          month = data.substring(0, pos)
+          day = data.substring(pos + 1)
+
+          // Se a data avaliada estiver compreendida entre os últimos sete dias (valor em ms)
+          if (Math.abs(today - date) < 604800000){
+            soma_freq += parseFloat(value.freq)
+            qtd_soma++
+            if (parseFloat(value.freq) > maior_freq){
+              maior_freq = parseFloat(value.freq)
+              maior_date = `${day}/${month}/${year}`
+              maior_time = time
+            }
+          }
+
+          // Adicionando à tabela que fica abaixo do Chart
+          if (it >= qtd) {
+            let linha = `<tr><td>${day}/${month}/${year}</td><td>${time}</td><td>${value.freq}</td></tr>`
+            id_table.insertAdjacentHTML('afterbegin', linha)
+          }
+
+          if (it >= obj.length - 8){
+            tempo.push(time)
+            freq.push(parseFloat(value.freq))
+            console.log(freq[i])
+            i++
+
+            if (it == obj.length - 1){
+              ultimo_valor = parseFloat(value.freq)
+              ultimo_time = time
+              ultima_data = `${day}/${month}/${year}`
+            }
+          }
+
+          it++
+        }
+
+        qtd = obj.length
+        
+        let id_card01 = document.getElementById("card_freq01")
+        let id_card02 = document.getElementById("card_freq02")
+        let id_card03 = document.getElementById("card_freq03")
+        let id_card04 = document.getElementById("card_freq04")
+
+        if (!isNaN(maior_freq) && maior_freq){
+          id_card01.innerHTML = `<p class="estilo-card">${maior_freq} BPM</p><br><p>Maior valor lido nos últimos sete dias. Medição realizada em ${maior_date} às ${maior_time}.</p>`
+        } else {
+          id_card01.innerHTML = `<p class="estilo-card">0 BPM</p><br><p>Maior valor lido nos últimos sete dias. <b>Não foi possível exibir esse valor.</b></p>`
+        }
+
+        if (qtd_soma){
+          let media = soma_freq / qtd_soma
+          id_card03.innerHTML = `<p class="estilo-card">${media} BPM</p><br><p>Média dos valores lidos nos últimos sete dias.</p>`
+        } else {
+          id_card03.innerHTML = `<p class="estilo-card">0 BPM</p><br><p><b>Não foi possível obter a média dos valores lidos nos últimos sete dias.</b></p>`
+        }
+
+        if (!isNaN(ultimo_valor)){
+          id_card02.innerHTML = `<p class="estilo-card">${ultimo_valor} BPM</p><br><p>Valor obtido na última medição. Medição realizada em ${ultima_data} às ${ultimo_time}.</p>`
+        } else  {
+          id_card02.innerHTML = `<p style="font-size: 50px; text-align: center; display: block; border: solid 2px white; box-shadow: 0px 0px 20px white;">0 BPM</p><br><p><b>Não foi possível obter o valor da última medição realizada.</b></p>`
+        }
+        let aux = document.getElementById("freq_preload")
+        aux.innerHTML = `<canvas id="chart_freq"></canvas>`
+
+        let ctx = document.getElementById("chart_freq").getContext('2d');
+        let chart_freq = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: tempo,
+                datasets: [{
+                    label: 'Frequência Cardíaca (BPM)',
+                    data: freq,
+                    backgroundColor: 'rgba(0, 212, 204, 0.2)',
+                    borderColor: 'rgba(0, 212, 204, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                elements: {
+                    line: {
+                        tension: 0, // disables bezier curves
+                        scaleOverride : true,
+                        scaleSteps : 10,
+                        scaleStepWidth : 50,
+                        scaleStartValue : 0
+                    }
+                }
+            }
+        });
+      }
+    });
+    
   }
+
+  //setInterval(updateData, 5000) 
+  drawChart()
+  setInterval(drawChart, 15000) 
  
 }
 
 // Esta função atualiza o gráfico da Temperatura Corporal
 function updateChartTemp() {
-  let tituloChart = 'Temperatura Corporal (°C)'
+  /*let tituloChart = 'Temperatura Corporal (°C)'
   let idChart = 'chart_temp'
   let idCard01 = "card_temp01"
   let idCard02 = "card_temp02"
@@ -334,8 +466,140 @@ function updateChartTemp() {
 
     drawChart()
     setTimeout(drawChart, 3500)
+  }*/
+
+  let qtd = 0
+
+  function drawChart() {
+    let temp = Array()
+    let tempo = Array()
+
+    $.ajax({
+      url: "getTemp.php",
+      type: 'GET',
+      success : function(data) {
+        chartData = data;
+        var obj = JSON.parse(chartData)
+
+        let id_table = document.getElementById("tab-temp")
+
+        let it = i = 0
+        let today = new Date()
+
+        let maior_temp = soma_temp = qtd_soma = 0
+        let maior_date, maior_time, ultimo_valor, ultima_data, ultimo_time
+
+        for (let [key, value] of Object.entries(obj)){
+          let dayTime = value.created_at
+          let pos = dayTime.search('T')
+          let data = dayTime.substring(0, pos)
+          let time = dayTime.substring(pos + 1, dayTime.length - 1)
+
+          let date = new Date(`${data} ${time}`)
+
+          // Organizando a data
+          pos = data.search("-")
+          year = data.substring(0, pos)
+          data = data.substring(pos + 1)
+          month = pos = data.search("-")
+          month = data.substring(0, pos)
+          day = data.substring(pos + 1)
+
+          // Se a data avaliada estiver compreendida entre os últimos sete dias (valor em ms)
+          if (Math.abs(today - date) < 604800000){
+            soma_temp += parseFloat(value.temp)
+            qtd_soma++
+            if (parseFloat(value.temp) > maior_temp){
+              maior_temp = parseFloat(value.temp)
+              maior_date = `${day}/${month}/${year}`
+              maior_time = time
+            }
+          }
+
+          // Adicionando à tabela que fica abaixo do Chart
+          if (it >= qtd) {
+            let linha = `<tr><td>${day}/${month}/${year}</td><td>${time}</td><td>${value.temp}</td></tr>`
+            id_table.insertAdjacentHTML('afterbegin', linha)
+          }
+
+          if (it >= obj.length - 8){
+            tempo.push(time)
+            temp.push(parseFloat(value.temp))
+            console.log(temp[i])
+            i++
+
+            if (it == obj.length - 1){
+              ultimo_valor = parseFloat(value.temp)
+              ultimo_time = time
+              ultima_data = `${day}/${month}/${year}`
+            }
+          }
+
+          it++
+        }
+
+        qtd = obj.length
+        
+        let id_card01 = document.getElementById("card_temp01")
+        let id_card02 = document.getElementById("card_temp02")
+        let id_card03 = document.getElementById("card_temp03")
+        let id_card04 = document.getElementById("card_temp04")
+
+        if (!isNaN(maior_temp) && maior_temp){
+          id_card01.innerHTML = `<p class="estilo-card">${maior_temp} °C</p><br><p>Maior valor lido nos últimos sete dias. Medição realizada em ${maior_date} às ${maior_time}.</p>`
+        } else {
+          id_card01.innerHTML = `<p class="estilo-card">0 °C</p><br><p>Maior valor lido nos últimos sete dias. <b>Não foi possível exibir esse valor.</b></p>`
+        }
+
+        if (qtd_soma){
+          let media = soma_temp / qtd_soma
+          id_card03.innerHTML = `<p class="estilo-card">${media} °C</p><br><p>Média dos valores lidos nos últimos sete dias.</p>`
+        } else {
+          id_card03.innerHTML = `<p class="estilo-card">0 °C</p><br><p><b>Não foi possível obter a média dos valores lidos nos últimos sete dias.</b></p>`
+        }
+
+        if (!isNaN(ultimo_valor)){
+          id_card02.innerHTML = `<p class="estilo-card">${ultimo_valor} °C</p><br><p>Valor obtido na última medição. Medição realizada em ${ultima_data} às ${ultimo_time}.</p>`
+        } else  {
+          id_card02.innerHTML = `<p style="font-size: 50px; text-align: center; display: block; border: solid 2px white; box-shadow: 0px 0px 20px white;">0 °C</p><br><p><b>Não foi possível obter o valor da última medição realizada.</b></p>`
+        }
+
+        let aux = document.getElementById("temp_preload")
+        aux.innerHTML = `<canvas id="chart_temp"></canvas>`
+
+        let ctx = document.getElementById("chart_temp").getContext('2d');
+        let chart_temp = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: tempo,
+                datasets: [{
+                    label: 'Temperatura Corporal (°C)',
+                    data: temp,
+                    backgroundColor: 'rgba(0, 212, 204, 0.2)',
+                    borderColor: 'rgba(0, 212, 204, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                elements: {
+                    line: {
+                        tension: 0, // disables bezier curves
+                        scaleOverride : true,
+                        scaleSteps : 10,
+                        scaleStepWidth : 50,
+                        scaleStartValue : 0
+                    }
+                }
+            }
+        });
+      }
+    });
+    
   }
- 
+
+  //setInterval(updateData, 5000) 
+  drawChart()
+  setInterval(drawChart, 15000) 
 }
 
 function updateChartPassos() {
@@ -381,7 +645,7 @@ function updateChartPassos() {
   let id_card02 = document.getElementById("card_passos02")
 
   id_card01.innerHTML = `<br><p class="estilo-card">4,20 km</p>`
-  id_card02.innerHTML = `<br><p class="estilo-card">293 cal</p>`
+  id_card02.innerHTML = `<br><p class="estilo-card">294 cal</p>`
 }
 
 function updateIMC(p, a, nome){
