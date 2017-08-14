@@ -524,7 +524,7 @@ function updateChartTemp() {
 
           if (it >= obj.length - 8){
             tempo.push(time)
-            temp.push(parseFloat(value.temp))
+            temp.push(parseFloat(value.temp).toFixed(2))
             console.log(temp[i])
             i++
 
@@ -552,7 +552,7 @@ function updateChartTemp() {
         }
 
         if (qtd_soma){
-          let media = soma_temp / qtd_soma
+          let media = (soma_temp / qtd_soma).toFixed(2)
           id_card03.innerHTML = `<p class="estilo-card">${media} °C</p><br><p>Média dos valores lidos nos últimos sete dias.</p>`
         } else {
           id_card03.innerHTML = `<p class="estilo-card">0 °C</p><br><p><b>Não foi possível obter a média dos valores lidos nos últimos sete dias.</b></p>`
