@@ -1,5 +1,5 @@
 // Esta função atualiza o gráfico da Frequência Cardíaca
-function updateChartFreq() {
+function updateChartFreq(id) {
   /*let tituloChart = 'Frequência Cardíaca (BPM)'
   let idChart = 'chart_freq'
   let idCard01 = "card_freq01"
@@ -173,7 +173,7 @@ function updateChartFreq() {
     let tempo = Array()
 
     $.ajax({
-      url: "getFreq.php",
+      url: `getFreq.php?id=${id}`,
       type: 'GET',
       success : function(data) {
         chartData = data;
@@ -301,7 +301,7 @@ function updateChartFreq() {
 }
 
 // Esta função atualiza o gráfico da Temperatura Corporal
-function updateChartTemp() {
+function updateChartTemp(id) {
   /*let tituloChart = 'Temperatura Corporal (°C)'
   let idChart = 'chart_temp'
   let idCard01 = "card_temp01"
@@ -475,7 +475,7 @@ function updateChartTemp() {
     let tempo = Array()
 
     $.ajax({
-      url: "getTemp.php",
+      url: `getTemp.php?id=${id}`,
       type: 'GET',
       success : function(data) {
         chartData = data;
@@ -688,133 +688,37 @@ function updateIMC(p, a, nome){
   idCardIMC.insertAdjacentHTML('afterbegin', `<br><p>${nome}, seu Índice de Massa Corporal é:</p><br><p class="center-text" style="font-size: 50px; display: block; border: solid 2px white; box-shadow: 0px 0px 20px white; margin: 0 20% 0 20%;">${IMC} kg/m²</p>`)
 }
 
-function showPatientInfo() {
-	let qtd = 0
+function showPatientInfo() {    
 
 	$.ajax({
-    url: "getTemp.php",
+    url: "php/getInfoPatient.php",
     type: 'GET',
     success : function(data) {
       chartData = data;
       var obj = JSON.parse(chartData)
 
-      let id_table = document.getElementById("tab-temp")
-
-      let it = i = 0
+      /*let it = i = 0
       let today = new Date()
 
       let maior_temp = soma_temp = qtd_soma = 0
-      let maior_date, maior_time, ultimo_valor, ultima_data, ultimo_time
+      let maior_date, maior_time, ultimo_valor, ultima_data, ultimo_time*/
+
+      let lista_pacientes = document.getElementById("lista-pacientes");
 
       for (let [key, value] of Object.entries(obj)){
-        let dayTime = value.created_at
-        let pos = dayTime.search('T')
-        let data = dayTime.substring(0, pos)
-        let time = dayTime.substring(pos + 1, dayTime.length - 1)
-
-        let date = new Date(`${data} ${time}`)
-
-        // Organizando a data
-        pos = data.search("-")
-        year = data.substring(0, pos)
-        data = data.substring(pos + 1)
-        month = pos = data.search("-")
-        month = data.substring(0, pos)
-        day = data.substring(pos + 1)
-
-        // Se a data avaliada estiver compreendida entre os últimos sete dias (valor em ms)
-        if (Math.abs(today - date) < 604800000){
-          soma_temp += parseFloat(value.temp)
-          qtd_soma++
-          if (parseFloat(value.temp) > maior_temp){
-            maior_temp = parseFloat(value.temp)
-            maior_date = `${day}/${month}/${year}`
-            maior_time = time
-          }
-        }
-
-        // Adicionando à tabela que fica abaixo do Chart
-        if (it >= qtd) {
-          let linha = `<tr><td>${day}/${month}/${year}</td><td>${time}</td><td>${value.temp}</td></tr>`
-          id_table.insertAdjacentHTML('afterbegin', linha)
-        }
-
-        if (it >= obj.length - 8){
-          tempo.push(time)
-          temp.push(parseFloat(value.temp).toFixed(2))
-          console.log(temp[i])
-          i++
-
-          if (it == obj.length - 1){
-            ultimo_valor = parseFloat(value.temp)
-            ultimo_time = time
-            ultima_data = `${day}/${month}/${year}`
-          }
-        }
-
-        it++
+        console.log("Entrei!")
+        let nome = value.nome
+        let id = value.idusuario
+        lista_pacientes.insertAdjacentHTML('afterbegin', `<li class="collection-item avatar"><i class="material-icons circle blue lighten-1" style="font-size: 30px;">mood</i><span class="title"><b>${nome}</b><a><p class="blue-text" onclick="cliqueiPacienteDetalhes(this.id)" id="${id}">Ver detalhes</p></a></span><a href="#!" class="secondary-content"><i class="material-icons">grade</i></a></li>`)
       }
-
-      qtd = obj.length
-      
-      let id_card01 = document.getElementById("card_temp01")
-      let id_card02 = document.getElementById("card_temp02")
-      let id_card03 = document.getElementById("card_temp03")
-      let id_card04 = document.getElementById("card_temp04")
-
-      if (!isNaN(maior_temp) && maior_temp){
-        id_card01.innerHTML = `<p class="estilo-card">${maior_temp} °C</p><br><p>Maior valor lido nos últimos sete dias. Medição realizada em ${maior_date} às ${maior_time}.</p>`
-      } else {
-        id_card01.innerHTML = `<p class="estilo-card">0 °C</p><br><p>Maior valor lido nos últimos sete dias. <b>Não foi possível exibir esse valor.</b></p>`
-      }
-
-      if (qtd_soma){
-        let media = (soma_temp / qtd_soma).toFixed(2)
-        id_card03.innerHTML = `<p class="estilo-card">${media} °C</p><br><p>Média dos valores lidos nos últimos sete dias.</p>`
-      } else {
-        id_card03.innerHTML = `<p class="estilo-card">0 °C</p><br><p><b>Não foi possível obter a média dos valores lidos nos últimos sete dias.</b></p>`
-      }
-
-      if (!isNaN(ultimo_valor)){
-        id_card02.innerHTML = `<p class="estilo-card">${ultimo_valor} °C</p><br><p>Valor obtido na última medição. Medição realizada em ${ultima_data} às ${ultimo_time}.</p>`
-      } else  {
-        id_card02.innerHTML = `<p style="font-size: 50px; text-align: center; display: block; border: solid 2px white; box-shadow: 0px 0px 20px white;">0 °C</p><br><p><b>Não foi possível obter o valor da última medição realizada.</b></p>`
-      }
-
-      let aux = document.getElementById("temp_preload")
-      aux.innerHTML = `<canvas id="chart_temp"></canvas>`
-
-      let ctx = document.getElementById("chart_temp").getContext('2d');
-      let chart_temp = new Chart(ctx, {
-          type: 'line',
-          data: {
-              labels: tempo,
-              datasets: [{
-                  label: 'Temperatura Corporal (°C)',
-                  data: temp,
-                  backgroundColor: 'rgba(0, 212, 204, 0.2)',
-                  borderColor: 'rgba(0, 212, 204, 1)',
-                  borderWidth: 2
-              }]
-          },
-          options: {
-              elements: {
-                  line: {
-                      tension: 0, // disables bezier curves
-                      scaleOverride : true,
-                      scaleSteps : 10,
-                      scaleStepWidth : 50,
-                      scaleStartValue : 0
-                  }
-              }
-          }
-      });
-    }
+    }   
   });
 
-  function drawChart() {
-    let temp = Array()
-    let tempo = Array()
-    
+  function obterIMC(id_paciente){
+
   }
+}
+
+function cliqueiPacienteDetalhes(clicado_id) {
+  window.location.href=`doctor-patient.php?id=${clicado_id}`
 }

@@ -566,8 +566,8 @@
 		<script type="text/javascript" src="js/myjs/functions.js"></script>
 		<script>
 			$( document ).ready(function() {
-				updateChartFreq()
-				updateChartTemp()
+				updateChartFreq("<?php echo $id; ?>")
+				updateChartTemp("<?php echo $id; ?>")
 				updateChartPassos()
 				updateIMC("<?php echo $peso; ?>", "<?php echo $altura; ?>", "<?php echo $nome; ?>")
 			});

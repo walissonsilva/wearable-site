@@ -44,37 +44,13 @@
 			</div>
 		</nav>
 
-		<h4 class="center-text" style="top: 20px;">Pacientes</h4>
+		<!--<h4 class="center-text" style="top: 20px;">Pacientes</h4>
 
-		<!--<ul class="collection">
+		<ul class="collection">
       <li class="collection-item center-text"><h5>Pacientes</h5></li>
     </ul>-->
 
-		<ul class="collection">
-		  <li class="collection-item avatar">
-		    <i class="material-icons circle">person</i>
-		    <span class="title">Title</span>
-		    <p>First Line <br>
-		       Second Line
-		    </p>
-		    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-		  </li>
-		  <li class="collection-item avatar">
-		    <i class="material-icons circle green">person</i>
-		    <span class="title">Title</span>
-		    <p>First Line <br>
-		       Second Line
-		    </p>
-		    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-		  </li>
-		  <li class="collection-item avatar">
-		    <i class="material-icons circle red">person</i>
-		    <span class="title">Title</span>
-		    <p>First Line <br>
-		       Second Line
-		    </p>
-		    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-		  </li>
+		<ul class="collection" id="lista-pacientes">
 		</ul>
 
 		<!--Import jQuery before materialize.js-->
@@ -88,4 +64,9 @@
 		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.3/Chart.min.js"></script>
 		<script type="text/javascript" src="js/myjs/functions.js"></script>
+		<script>
+			$(document).ready(function() {
+				showPatientInfo()
+			});
+		</script>
 </html>

@@ -1,10 +1,30 @@
 <?php 
-	include_once "settings/settings.php";
+	include_once "../settings/settings.php";
 
 	@session_start();
 
-  $id = $_GET['id']; /* Utilizando o id para associar aos JSON's, pois duas pessoas podem inserir o mesmo nome */
+	$query = "SELECT * FROM Paciente";
+  $result = mysqli_query($conecta, $query);
+  $busca = mysqli_num_rows($result);
 
+  $jsonArray = array();
+  
+  if ($busca > 0){
+  	while ($linha = mysqli_fetch_assoc($result)){
+  		$nome = $linha['nome'];
+  		$id = $linha['idusuario'];
+
+  		$jsonArrayItem = array();
+			$jsonArrayItem['nome'] = $nome;
+			$jsonArrayItem['idusuario'] = $id;
+
+			array_push($jsonArray, $jsonArrayItem);
+		}
+  }
+
+  echo json_encode($jsonArray);
+
+ 	/*
 	try {
 		// Tomar os JSON's do paciente id
 		$query = "SELECT * FROM Json WHERE id_paciente = {$id}";
@@ -57,5 +77,5 @@
 		}
 	}
 
-	echo json_encode($jsonArray);
+	echo json_encode($jsonArray);*/
  ?>

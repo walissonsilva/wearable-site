@@ -2,7 +2,20 @@
 	include_once("settings/settings.php");
 	@session_start();
 
-	$nome = $_SESSION['nome'];
+	$id = $_GET['id'];
+
+	$query = "SELECT * FROM Paciente WHERE idusuario = $id";
+	$result = mysqli_query($conecta, $query);
+	$busca = mysqli_num_rows($result);
+	$linha = mysqli_fetch_assoc($result);
+
+	if ($busca > 0) {
+    $nome = $linha['nome'];
+    $email = $linha['email'];
+    $peso = $linha['peso'];
+    $altura = $linha['altura'];
+    $tipo = "paciente";
+	}
 
 	if (!isset($_SESSION['email'])){
 		header('Location: login.php');
@@ -562,8 +575,8 @@
 		<script type="text/javascript" src="js/myjs/functions.js"></script>
 		<script>
 			$( document ).ready(function() {
-				updateChartFreq()
-				updateChartTemp()
+				updateChartFreq("<?php echo $id; ?>")
+				updateChartTemp("<?php echo $id; ?>")
 				updateChartPassos()
 				updateIMC("<?php echo $peso; ?>", "<?php echo $altura; ?>", "<?php echo $nome; ?>")
 			});

@@ -3,7 +3,7 @@
 
 	@session_start();
 
-  $id = $_SESSION['id']; /* Utilizando o id para associar aos JSON's, pois duas pessoas podem inserir o mesmo nome */
+  $id = $_GET['id']; /* Utilizando o id para associar aos JSON's, pois duas pessoas podem inserir o mesmo nome */
 
 	try {
 		// Tomar os JSON's do paciente id
